@@ -107,7 +107,7 @@ export function AuthProvider({ children }) {
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
+    throw new Error("useAuth 必須在 AuthProvider 的子元件中使用");
   }
   return context;
 };

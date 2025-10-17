@@ -33,7 +33,7 @@
 
 #### 後端 (Express.js)
 
-```
+```txt
 express_back/
 ├── services/
 │   ├── googleAuth.js       # Google Token 驗證
@@ -56,7 +56,7 @@ express_back/
 
 #### 前端 (React + Vite)
 
-```
+```txt
 react_front/src/
 ├── context/
 │   └── AuthContext.jsx    # 全局狀態管理
@@ -79,7 +79,7 @@ react_front/src/
 
 ### 完整流程圖
 
-```
+```txt
 1. 用戶訪問前端
    ↓
 2. 點擊 Google 登入按鈕
@@ -152,7 +152,7 @@ react_front/src/
 
 **後端** (`express_back/.env`):
 
-```env
+```ini
 GOOGLE_CLIENT_ID=your_actual_google_client_id
 GOOGLE_CLIENT_SECRET=your_actual_google_client_secret
 JWT_ACCESS_SECRET=your_generated_secret_key_32_chars
@@ -161,7 +161,7 @@ JWT_REFRESH_SECRET=your_generated_secret_key_32_chars
 
 **前端** (`react_front/.env`):
 
-```env
+```ini
 VITE_GOOGLE_CLIENT_ID=your_actual_google_client_id
 ```
 
