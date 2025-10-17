@@ -1,0 +1,7 @@
+
+把上述結果寫入 docs/010-plan.md
+
+"規劃" 使用 expressjs 做第三方登入的後端使，使用 google 登入 (GCP OAuth )，以上為一些條件
+  1. 不使用 passport.js 下，建議使用哪些套件
+  2. 架構為前後端分離，前端會使用 react，先考慮後端就好
+  3. 是否需要使用 jwt
