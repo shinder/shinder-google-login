@@ -1,5 +1,5 @@
-import { GoogleLogin } from '@react-oauth/google';
-import { useAuth } from '../context/AuthContext';
+import { GoogleLogin } from "@react-oauth/google";
+import { useAuth } from "../context/AuthContext";
 
 export function GoogleLoginButton() {
   const { login, error } = useAuth();
@@ -9,7 +9,7 @@ export function GoogleLoginButton() {
       <GoogleLogin
         onSuccess={login}
         onError={() => {
-          console.log('Google Login Failed');
+          console.log("Google Login Failed");
         }}
         text="signin_with"
         shape="rectangular"
@@ -17,9 +17,7 @@ export function GoogleLoginButton() {
         locale="zh_TW"
       />
       {error && (
-        <div style={{ color: 'red', marginTop: '10px' }}>
-          錯誤: {error}
-        </div>
+        <div style={{ color: "red", marginTop: "10px" }}>錯誤: {error}</div>
       )}
     </div>
   );
