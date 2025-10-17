@@ -8,7 +8,7 @@
 
 ### 安裝的套件
 
-- `react-router-dom` (7.9.4)
+- `react-router` (7.9.4)
 
 ### 路由結構
 
@@ -28,6 +28,7 @@
 **功能**: 保護需要登入才能訪問的路由
 
 **邏輯**:
+
 - 檢查 `isAuthenticated` 狀態
 - 如果未登入，重定向到 `/login`
 - 如果已登入，渲染子組件
@@ -46,6 +47,7 @@
 **功能**: 登入頁面的路由守衛
 
 **邏輯**:
+
 - 檢查 `isAuthenticated` 狀態
 - 如果已登入，重定向到 `/dashboard`
 - 如果未登入，顯示登入頁面
@@ -77,7 +79,7 @@ LoginRoute 檢測到已登入
 
 ### 已登入用戶訪問流程
 
-```
+```txt
 用戶訪問 /login
     ↓
 LoginRoute 檢測到已登入
@@ -87,7 +89,7 @@ LoginRoute 檢測到已登入
 顯示 Dashboard
 ```
 
-```
+```txt
 用戶訪問 /dashboard
     ↓
 ProtectedRoute 檢查登入狀態
@@ -97,7 +99,7 @@ ProtectedRoute 檢查登入狀態
 
 ### 登出流程
 
-```
+```txt
 用戶在 Dashboard 點擊登出
     ↓
 調用 handleLogout()
@@ -114,7 +116,7 @@ navigate('/login')
 ### App.jsx 更新
 
 ```jsx
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router';
 
 <BrowserRouter>
   <Routes>
@@ -138,7 +140,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 添加登出後的導航功能：
 
 ```jsx
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 const navigate = useNavigate();
 
@@ -305,7 +307,7 @@ A: 在 `App.jsx` 的 Routes 中添加新路由，並使用 `ProtectedRoute` 包�
 A: 使用 `useNavigate` hook：
 
 ```jsx
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 function MyComponent() {
   const navigate = useNavigate();
@@ -321,7 +323,7 @@ function MyComponent() {
 A: 使用 `useLocation` hook：
 
 ```jsx
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
 
 function MyComponent() {
   const location = useLocation();
