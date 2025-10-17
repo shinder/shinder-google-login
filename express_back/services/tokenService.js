@@ -1,4 +1,4 @@
-import jwt from 'jsonwebtoken';
+import jwt from "jsonwebtoken";
 
 /**
  * 生成 Access Token
@@ -13,7 +13,7 @@ export function generateAccessToken(user) {
       name: user.name,
     },
     process.env.JWT_ACCESS_SECRET,
-    { expiresIn: process.env.JWT_ACCESS_EXPIRES_IN || '15m' }
+    { expiresIn: process.env.JWT_ACCESS_EXPIRES_IN || "15m" }
   );
 }
 
@@ -23,11 +23,9 @@ export function generateAccessToken(user) {
  * @returns {string} - JWT Refresh Token
  */
 export function generateRefreshToken(user) {
-  return jwt.sign(
-    { userId: user.id },
-    process.env.JWT_REFRESH_SECRET,
-    { expiresIn: process.env.JWT_REFRESH_EXPIRES_IN || '7d' }
-  );
+  return jwt.sign({ userId: user.id }, process.env.JWT_REFRESH_SECRET, {
+    expiresIn: process.env.JWT_REFRESH_EXPIRES_IN || "7d",
+  });
 }
 
 /**
@@ -39,7 +37,7 @@ export function verifyAccessToken(token) {
   try {
     return jwt.verify(token, process.env.JWT_ACCESS_SECRET);
   } catch (error) {
-    throw new Error('Invalid or expired token');
+    throw new Error("無效或過期的 Token");
   }
 }
 
@@ -52,6 +50,6 @@ export function verifyRefreshToken(token) {
   try {
     return jwt.verify(token, process.env.JWT_REFRESH_SECRET);
   } catch (error) {
-    throw new Error('Invalid or expired refresh token');
+    throw new Error("無效或過期的 Refresh Token");
   }
 }

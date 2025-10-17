@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001";
 
 /**
  * Google 登入
@@ -7,16 +7,16 @@ const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
  */
 export async function googleLogin(idToken) {
   const response = await fetch(`${API_URL}/api/auth/google`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({ idToken }),
   });
 
   if (!response.ok) {
     const error = await response.json();
-    throw new Error(error.error || 'Login failed');
+    throw new Error(error.error || "登入失敗");
   }
 
   return response.json();
@@ -29,16 +29,16 @@ export async function googleLogin(idToken) {
  */
 export async function refreshAccessToken(refreshToken) {
   const response = await fetch(`${API_URL}/api/auth/refresh`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({ refreshToken }),
   });
 
   if (!response.ok) {
     const error = await response.json();
-    throw new Error(error.error || 'Token refresh failed');
+    throw new Error(error.error || "Token 刷新失敗");
   }
 
   return response.json();
@@ -51,15 +51,15 @@ export async function refreshAccessToken(refreshToken) {
  */
 export async function getCurrentUser(accessToken) {
   const response = await fetch(`${API_URL}/api/auth/me`, {
-    method: 'GET',
+    method: "GET",
     headers: {
-      'Authorization': `Bearer ${accessToken}`,
+      Authorization: `Bearer ${accessToken}`,
     },
   });
 
   if (!response.ok) {
     const error = await response.json();
-    throw new Error(error.error || 'Failed to get user');
+    throw new Error(error.error || "獲取用戶資料失敗");
   }
 
   return response.json();
@@ -72,15 +72,15 @@ export async function getCurrentUser(accessToken) {
  */
 export async function logout(accessToken) {
   const response = await fetch(`${API_URL}/api/auth/logout`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Authorization': `Bearer ${accessToken}`,
+      Authorization: `Bearer ${accessToken}`,
     },
   });
 
   if (!response.ok) {
     const error = await response.json();
-    throw new Error(error.error || 'Logout failed');
+    throw new Error(error.error || "登出失敗");
   }
 
   return response.json();

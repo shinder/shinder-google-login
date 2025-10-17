@@ -1,6 +1,7 @@
 # Google OAuth 登入實作計劃
 
 ## 專案需求
+
 - Express.js 後端
 - Google OAuth 2.0 登入
 - 不使用 Passport.js
@@ -10,12 +11,14 @@
 ## 推薦套件清單
 
 ### 必要套件
+
 ```bash
 cd express_back
 pnpm add googleapis jsonwebtoken cors dotenv
 ```
 
 ### 可選套件
+
 ```bash
 pnpm add express-validator helmet
 pnpm add -D @types/jsonwebtoken  # 如果使用 TypeScript
@@ -26,6 +29,7 @@ pnpm add -D @types/jsonwebtoken  # 如果使用 TypeScript
 ### 方式 A：前端主導 OAuth 流程（推薦）
 
 #### 流程說明
+
 1. **前端**：使用 `@react-oauth/google` 顯示 Google 登入按鈕
 2. **前端**：用戶點擊登入，Google 返回 ID Token
 3. **前端**：將 ID Token 發送到後端 `POST /api/auth/google`
@@ -36,12 +40,14 @@ pnpm add -D @types/jsonwebtoken  # 如果使用 TypeScript
 8. **前端**：儲存 JWT，用於後續 API 請求
 
 #### 優點
+
 - 前端有完整控制權
 - 更好的用戶體驗（不需要重定向）
 - 適合 SPA 應用
 - 實作較簡單
 
 #### 前端需要安裝
+
 ```bash
 cd react_front
 pnpm add @react-oauth/google
@@ -50,6 +56,7 @@ pnpm add @react-oauth/google
 ### 方式 B：後端主導 OAuth 流程
 
 #### 流程說明
+
 1. **前端**：重定向到 `GET /api/auth/google`
 2. **後端**：重定向到 Google OAuth 授權頁面
 3. **用戶**：在 Google 頁面授權
@@ -60,6 +67,7 @@ pnpm add @react-oauth/google
 8. **後端**：重定向回前端，附帶 JWT（URL 參數或 cookie）
 
 #### 缺點
+
 - 需要多次重定向
 - 用戶體驗較差
 - 實作較複雜
@@ -67,16 +75,20 @@ pnpm add @react-oauth/google
 ## JWT 策略
 
 ### Token 類型
+
 - **Access Token**：短期有效（15-30 分鐘）
 - **Refresh Token**：長期有效（7-30 天）
 
 ### Token 存儲
+
 **前端選項：**
+
 1. **Memory**（最安全，但刷新頁面會丟失）
 2. **httpOnly Cookie**（安全，防 XSS）
 3. **LocalStorage**（不推薦，容易受 XSS 攻擊）
 
 ### Token Payload 範例
+
 ```javascript
 {
   "userId": "12345",
@@ -172,11 +184,13 @@ FRONTEND_URL=http://localhost:5173
 ## 資料庫考量
 
 雖然 JWT 是無狀態的，但建議仍需資料庫來：
+
 - 儲存用戶基本資料
 - 儲存 refresh token（用於撤銷）
 - 記錄登入歷史
 
 **推薦選項：**
+
 - **PostgreSQL** + Prisma
 - **MongoDB** + Mongoose
 - **SQLite**（開發用）

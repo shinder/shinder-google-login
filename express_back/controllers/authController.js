@@ -1,9 +1,9 @@
-import { verifyGoogleToken } from '../services/googleAuth.js';
+import { verifyGoogleToken } from "../services/googleAuth.js";
 import {
   generateAccessToken,
   generateRefreshToken,
   verifyRefreshToken,
-} from '../services/tokenService.js';
+} from "../services/tokenService.js";
 
 /**
  * 用戶資料暫存（實際應使用資料庫）
@@ -20,7 +20,7 @@ export async function googleLogin(req, res, next) {
     const { idToken } = req.body;
 
     if (!idToken) {
-      return res.status(400).json({ error: 'ID token is required' });
+      return res.status(400).json({ error: "需要提供 ID Token" });
     }
 
     // 驗證 Google ID Token
@@ -38,9 +38,9 @@ export async function googleLogin(req, res, next) {
         createdAt: new Date(),
       };
       users.set(googleUser.googleId, user);
-      console.log('新用戶註冊:', user.email);
+      console.log("新用戶註冊:", user.email);
     } else {
-      console.log('用戶登入:', user.email);
+      console.log("用戶登入:", user.email);
     }
 
     // 生成 JWT
@@ -72,7 +72,7 @@ export async function refreshToken(req, res, next) {
     const { refreshToken } = req.body;
 
     if (!refreshToken) {
-      return res.status(400).json({ error: 'Refresh token is required' });
+      return res.status(400).json({ error: "需要提供 Refresh Token" });
     }
 
     // 驗證 Refresh Token
@@ -81,7 +81,7 @@ export async function refreshToken(req, res, next) {
     // 查找用戶
     const user = users.get(decoded.userId);
     if (!user) {
-      return res.status(404).json({ error: 'User not found' });
+      return res.status(404).json({ error: "找不到用戶" });
     }
 
     // 生成新的 Access Token
@@ -105,7 +105,7 @@ export function getCurrentUser(req, res) {
   const user = users.get(req.user.userId);
 
   if (!user) {
-    return res.status(404).json({ error: 'User not found' });
+    return res.status(404).json({ error: "找不到用戶" });
   }
 
   res.json({
@@ -127,6 +127,6 @@ export function logout(req, res) {
   // 如果使用資料庫存儲 refresh token，在此處移除
   res.json({
     success: true,
-    message: 'Logged out successfully',
+    message: "已成功登出",
   });
 }

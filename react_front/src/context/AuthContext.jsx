@@ -30,7 +30,7 @@ export function AuthProvider({ children }) {
           setLoading(false);
         })
         .catch((err) => {
-          console.error("Failed to load user:", err);
+          console.error("載入用戶失敗:", err);
           // Token 可能已過期，清除
           localStorage.removeItem("accessToken");
           localStorage.removeItem("refreshToken");

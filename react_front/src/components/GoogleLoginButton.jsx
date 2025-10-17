@@ -9,7 +9,7 @@ export function GoogleLoginButton() {
       <GoogleLogin
         onSuccess={login}
         onError={() => {
-          console.log("Google Login Failed");
+          console.log("Google 登入失敗");
         }}
         text="signin_with"
         shape="rectangular"

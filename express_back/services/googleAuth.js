@@ -1,4 +1,4 @@
-import { OAuth2Client } from 'google-auth-library';
+import { OAuth2Client } from "google-auth-library";
 
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
@@ -26,6 +26,6 @@ export async function verifyGoogleToken(token) {
       familyName: payload.family_name,
     };
   } catch (error) {
-    throw new Error('Invalid Google token');
+    throw new Error("無效的 Google Token");
   }
 }
