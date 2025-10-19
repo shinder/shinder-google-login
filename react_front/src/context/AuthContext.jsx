@@ -45,11 +45,17 @@ export function AuthProvider({ children }) {
 
   // 處理 Google 登入
   const handleGoogleLogin = async (credentialResponse) => {
+    console.log("Google signin 回傳的 credential:");
+    console.log(JSON.stringify(credentialResponse, null, 4));
+
     try {
       setError(null);
       setLoading(true);
 
+      // 呼叫我們自己的後端 API，將 idToken 送到 Google 的 Server 做驗證，並取得用戶資料
       const response = await googleLogin(credentialResponse.credential);
+      console.log("我們自己的後端回傳的用戶資料:");
+      console.log(JSON.stringify(response, null, 4));
 
       if (response.success) {
         // 儲存 tokens
