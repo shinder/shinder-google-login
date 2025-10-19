@@ -102,14 +102,24 @@ shinder-google-login/
 ### 2. 獲取 Google OAuth 憑證
 
 1. 前往 [Google Cloud Console](https://console.cloud.google.com/)
+
 2. 建立新專案或選擇現有專案
+
 3. 啟用「Google+ API」
+
 4. 建立「OAuth 2.0 用戶端 ID」憑證
-5. 設定授權的 JavaScript 來源：
+
+   1. 到「API和服務 > 憑證」，點選「+建立憑證」>「OAuth 用戶 ID」。
+
+   2. 「應用程式類型」選「網頁應用程式」
+
+5. 「已授權的 JavaScript 來源」加入正式環境及測試環境的 URI。設定授權的 JavaScript 來源：
    - `http://localhost:5173`
-6. 設定授權的重新導向 URI：
+
+6. 已授權的重新導向 URI」加入接收 Query String 參數的頁面 URI，同樣包含測試及正式環境。本範例流程沒用到 callback 功能，可以不用設定。設定授權的重新導向 URI：
    - `http://localhost:3001/api/auth/google/callback`
-7. 複製「用戶端 ID」
+
+7. 建立完成後，「下載 OAuth 用戶端」的 JSON 檔。或複製「用戶端 ID」和「用戶端密碼」。
 
 ### 3. 後端設定
 
@@ -150,6 +160,8 @@ pnpm install
 VITE_GOOGLE_CLIENT_ID=你的_GOOGLE_CLIENT_ID
 VITE_API_URL=http://localhost:3001
 ```
+
+**注意：** 前端的環境變數只有在開發環境是有效的。發佈後設定值會進到打包的程式碼內，並不會使用生產環境的環境變數。
 
 ## 啟動專案
 
